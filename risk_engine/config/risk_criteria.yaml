@@ -1,0 +1,28 @@
+# Risk prioritization matrix (FMEA scales) per ICH Q9
+
+severity:
+  1: "No impact"
+  2: "Negligible impact"
+  3: "Minor impact (operational inconvenience)"
+  4: "Moderate impact (quality event required)"
+  5: "Major impact (product delay or rejection)"
+  6: "Critical impact (potential patient harm, compliance failure)"
+
+occurrence:
+  1: "Extremely rare (<1% probability)"
+  2: "Rare (1-10% probability)"
+  3: "Occasional (10-30% probability)"
+  4: "Frequent (30-60% probability)"
+  5: "Very frequent (>60% probability)"
+
+detection:
+  1: "Almost certain (100% automated catch)"
+  2: "High (manual verification catch)"
+  3: "Moderate (caught during downstream process)"
+  4: "Low (might not be caught before release)"
+  5: "Almost impossible (will not be caught)"
+
+# Defines the RPN thresholds for CSA High/Not High
+thresholds:
+  high_risk_min_rpn: 40
+  critical_severity_trigger: 5  # Any severity >= 5 is automatically HIGH risk

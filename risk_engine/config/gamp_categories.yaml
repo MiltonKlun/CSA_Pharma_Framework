@@ -1,0 +1,22 @@
+# GAMP 5 Software Categories (Second Edition, 2022)
+
+categories:
+  1:
+    name: "Infrastructure Software"
+    description: "Operating systems, network software, middleware, antivirus, databases."
+    validation_approach: "Qualification (install/platform testing). No application-level functional validation required."
+  
+  3:
+    name: "Non-configured Products"
+    description: "Commercial off-the-shelf (COTS) software used exactly as provided by the vendor."
+    validation_approach: "Verify against user requirements. Focus on business process and vendor management."
+    
+  4:
+    name: "Configured Products"
+    description: "COTS software configured out-of-the-box via standard vendor-supplied mechanisms to meet business processes."
+    validation_approach: "Validate configuration. Verify vendor QMS. Focus testing on business workflows and integrations."
+    
+  5:
+    name: "Custom Software"
+    description: "Software custom-built from scratch or significant custom code added to a Category 4 system."
+    validation_approach: "Full software development lifecycle validation. Extensive code-level testing and code reviews required."

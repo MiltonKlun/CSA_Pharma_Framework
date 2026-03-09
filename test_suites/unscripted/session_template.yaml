@@ -1,0 +1,10 @@
+name: "CAPA Workflow Exploration"
+feature_id: "CAPA-001"
+tester: "Milton Klun"
+risk_level: "NOT HIGH"
+charter: >
+  Explore the edge cases of the CAPA workflow. Try to assign CAPAs to unauthorized users,
+  skip lifecycle steps, and verify that the system handles unexpected inputs gracefully.
+setup_instructions:
+  - Log in as the test QA user.
+  - Ensure at least one Deviation exists to link the CAPA against.

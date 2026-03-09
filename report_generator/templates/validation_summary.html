@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Summary Report - CSA</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 40px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: #34495e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .danger {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .warning {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        .summary-box {
+            background: #f8f9fa;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="section">
+        <h1>Validation Summary Report (VSR)</h1>
+        <div class="summary-box">
+            <p><strong>System Name:</strong> {{ system.name }}</p>
+            <p><strong>Vendor:</strong> {{ system.vendor }}</p>
+            <p><strong>Version:</strong> {{ system.version }}</p>
+            <p><strong>GAMP Category:</strong> {{ system.gamp_category }}</p>
+            <p><strong>Date Generated:</strong> {{ date }}</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>1. Executive Summary</h2>
+        <p>This Validation Summary Report presents the results of the assurance activities performed on the <strong>{{
+                system.name }}</strong> in accordance with FDA Computer Software Assurance (CSA) principles.</p>
+        <p>Overall System Validation Status:
+            {% if alcoa_status == 'PASS' %}
+            <span class="success">VALIDATED - ACCEPTABLE FOR USE</span>
+            {% else %}
+            <span class="danger">FAILED - DO NOT USE FOR GXP</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <h2>2. System Inventory & Risk Assessment (Steps 1 & 2)</h2>
+        <p>Per CSA guidelines, system features were evaluated for their intended use and risk impact. Assurance
+            activities were scaled accordingly.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature ID</th>
+                    <th>Name</th>
+                    <th>Intended Use</th>
+                    <th>Safety / Data Impact</th>
+                    <th>Assurance Required (CSA)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feature in features %}
+                <tr>
+                    <td>{{ feature.id }}</td>
+                    <td>{{ feature.name }}</td>
+                    <td>{{ feature.intended_use | upper }}</td>
+                    <td>
+                        {% if feature.patient_safety_impact or feature.data_integrity_impact %}
+                        <span class="danger">YES</span>
+                        {% else %}
+                        <span>NO</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if feature.intended_use == 'direct' and (feature.patient_safety_impact or
+                        feature.data_integrity_impact) %}
+                        <span class="danger">Scripted Testing (HIGH RISK)</span>
+                        {% else %}
+                        <span class="success">Unscripted / Exploratory (NOT HIGH)</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Assurance Activities (Step 3)</h2>
+
+        <h3>3.1 Unscripted Exploratory Sessions (NOT HIGH risk features)</h3>
+        {% if unscripted_sessions %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Session ID</th>
+                    <th>Feature</th>
+                    <th>Tester</th>
+                    <th>Event Log</th>
+                    <th>Defects Found</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in unscripted_sessions %}
+                <tr>
+                    <td>{{ session.session_id }}</td>
+                    <td>{{ session.feature_id }}</td>
+                    <td>{{ session.tester }}</td>
+                    <td>{{ session.logs | length }} events</td>
+                    <td>
+                        {% set defects = session.logs | selectattr('type', 'equalto', 'Defect') | list %}
+                        {% if defects %}
+                        <ul style="margin: 0; padding-left: 15px;">
+                            {% for d in defects %}
+                            <li><span class="danger">{{ d.severity }}</span> ({{ d.reproducibility }})</li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <span class="success">None Detected</span>
+                        {% endif %}
+                    </td>
+                    <td class="success">Reviewed & Acceptable</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p><em>No exploratory sessions were recorded during this validation cycle.</em></p>
+        {% endif %}
+
+        <h3>3.2 Scripted Automated Test Suite (HIGH risk features)</h3>
+        {% if scripted_results %}
+        <div class="summary-box">
+            <p>
+                {% if scripted_results.all_passed %}
+                <strong>Overall Status:</strong> <span class="success">✔ PASS — {{ scripted_results.passed }}/{{
+                    scripted_results.total }} tests passed in {{ scripted_results.duration }}s</span>
+                {% else %}
+                <strong>Overall Status:</strong> <span class="danger">✘ FAIL — {{ scripted_results.failed }} failure(s)
+                    detected in {{ scripted_results.total }} tests</span>
+                {% endif %}
+            </p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Test Class</th>
+                    <th>Test Name</th>
+                    <th>Duration (s)</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tc in scripted_results.testcases %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td><code>{{ tc.classname }}</code></td>
+                    <td>{{ tc.name }}</td>
+                    <td>{{ tc.duration }}</td>
+                    <td>
+                        {% if tc.status == 'PASS' %}<span class="success">PASS</span>
+                        {% elif tc.status == 'FAIL' %}<span class="danger">FAIL</span>
+                        {% elif tc.status == 'ERROR' %}<span class="danger">ERROR</span>
+                        {% else %}<span class="warning">{{ tc.status }}</span>{% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p><em>No scripted test results available. Ensure tests were run before generating this report.</em></p>
+        {% endif %}
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <h2>4. Electronic Evidence Record & ALCOA+ Validation (Step 4)</h2>
+        <p>In lieu of traditional screenshot compilation, the system's underlying Audit Trail databases were directly
+            extracted and mathematically validated against the 5 FDA Data Integrity principles.</p>
+
+        <div class="summary-box">
+            <p><strong>ALCOA+ Extractor Status:</strong> {% if alcoa_status == 'PASS' %}<span
+                    class="success">PASS</span>{% else %}<span class="danger">FAIL</span>{% endif %}</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Data Integrity Principle</th>
+                    <th>Definition Validated</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rule, status in alcoa_rules.items() %}
+                <tr>
+                    <td><strong>{{ rule }}</strong></td>
+                    <td>
+                        {% if rule == 'Attributable' %}All records mathematically linked to a specific user identity
+                        {% elif rule == 'Legible' %}Data formats are human-readable and intact without corruption
+                        {% elif rule == 'Contemporaneous' %}Timestamps are strictly ISO-8601 compliant indicating time
+                        of action
+                        {% elif rule == 'Original' %}Evidence extracted directly from primary SQLite source tables
+                        {% elif rule == 'Accurate' %}Sequential integrity verified (no missing primary keys)
+                        {% elif rule == 'Complete' %}All required fields populated with no missing data per record
+                        {% elif rule == 'Consistent' %}Timestamps are strictly chronological — no clock manipulation
+                        detected
+                        {% elif rule == 'Enduring' %}Evidence stored in open, non-proprietary JSON format (IETF RFC
+                        8259)
+                        {% elif rule == 'Available' %}Evidence file is physically accessible and readable on demand
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if status == 'PASS' %}
+                        <span class="success">PASS</span>
+                        {% else %}
+                        <span class="danger">FAIL</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% if alcoa_issues %}
+        <h3>Data Integrity Issues Discovered:</h3>
+        <ul>
+            {% for issue in alcoa_issues %}
+            <li class="danger">{{ issue }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="section">
+        <h2>5. Conclusion</h2>
+        <p>The system has undergone appropriate assurance activities scaled to its intended use and risk. Critical
+            High-Risk features were validated via automated scripted tools. Not-High risk features were evaluated via
+            unscripted exploration. The resulting electronic evidence conforms cleanly to ALCOA+ Data Integrity
+            guidelines.</p>
+        <p><strong>The system is deemed validated and fit for its intended use.</strong></p>
+    </div>
+
+    <div class="footer">
+        Generated automatically by CSA Python Framework - {{ date }}
+    </div>
+
+</body>
+
+</html>

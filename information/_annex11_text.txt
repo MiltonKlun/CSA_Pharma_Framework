@@ -1,0 +1,202 @@
+ EUROPEAN COMMISSION 
+HEALTH AND CONSUMERS DIRECTORATE-GENERAL 
+ 
+Public Health and Risk Assessment 
+Pharmaceuticals  
+ 
+Brussels,  
+SANCO/C8/AM/sl/ares(2010)1064599  
+ 
+ 
+EudraLex 
+The Rules Governing Medicinal Pr oducts in the European Union 
+ 
+Volume 4 
+Good Manufacturing Practice 
+Medicinal Products for Human and Veterinary Use 
+ 
+Annex 11: Computerised Systems  
+ 
+ 
+ 
+Legal basis for publishing the detailed guidelines:  Article 47 of Directive 2001/83/EC on 
+the Community code relating to medicinal product s for human use and Article 51 of Directive 
+2001/82/EC on the Community code relating to ve terinary medicinal products. This document 
+provides guidance for the interpretation of  the principles and guidelines of good 
+manufacturing practice (GMP) fo r medicinal products as laid down in Directive 2003/94/EC 
+for medicinal products for human use and Directive 91/412/EEC for veterinary use. 
+  Status of the document : revision 1 
+ 
+Reasons for changes : the Annex has been revised in re sponse to the increased use of 
+computerised systems and the increased comp lexity of these syst ems. Consequential 
+amendments are also proposed for Chapter 4 of the GMP Guide.   Deadline for coming into operation : 30 June 2011 
+       
+ 
+       
+---PAGE BREAK---
+Commission Européenne, B-1049 Bruxelles / Europese Commissie, 
+B-1049 Brussel - Belgium 
+Telephone: (32-2) 299 11 11 
+ 
+Principle  
+This annex applies to all forms of computeris ed systems used as part of a GMP regulated 
+activities. A computerised system is a set of software and hardware components which 
+together fulfill certain functionalities.   The application should be validated; IT infrastructure shou ld be qualified.  
+ 
+Where a computerised system replaces a manu al operation, there should be no resultant 
+decrease in product quality, process control or qu ality assurance. There should be no increase 
+in the overall risk of the process.   
+General  
+1.  Risk Management   
+Risk management should be applied throughout the lifecycle of the computerised system 
+taking into account patient safet y, data integrity a nd product quality. As part of a risk 
+management system, decisions on the extent of validation and da ta integrity co ntrols should 
+be based on a justified and documented risk assessment of the computerised system.  
+ 
+2.  Personnel   
+There should be close cooperation between al l relevant personnel such as Process Owner, 
+System Owner, Qualified Persons and IT . All personnel should have appropriate 
+qualifications, level of access and defined responsi bilities to carry out their assigned duties.  
+ 
+3.  Suppliers and Service Providers   
+3.1  When third parties (e.g. suppliers, service pr oviders) are used e.g. to provide, install, 
+configure, integrate, validate, maintain (e .g. via remote access), modify or retain a 
+computerised system or related service or for data processing, formal agreements must exist 
+between the manufacturer and any third partie s, and these agreements should include clear 
+statements of the responsibilit ies of the third party. IT-dep artments should be considered 
+analogous.   
+3.2  The competence and reliability of a supp lier are key factors wh en selecting a product 
+or service provider. The need for an audit should be based on a risk assessment.  
+ 3.3  Documentation supplied with  commercial off-the-shelf pr oducts should be reviewed 
+by regulated users to check that user requirements are fulfilled.  
+ 
+3.4      Quality system and audit information re lating to suppliers or developers of software 
+and implemented systems should be made available to inspectors on request. 
+ 
+Project Phase  
+4.  Validation  
+4.1  The validation documentation and reports s hould cover the relevant steps of the life 
+cycle. Manufacturers should be ab le to justify their standards,  protocols, acceptance criteria, 
+procedures and records based on their risk assessment. 
+  
+---PAGE BREAK---
+4.2  Validation documentation should include ch ange control records (if applicable) and 
+reports on any deviations observed during the validation process.  
+ 
+4.3  An up to date listing of all relevant sy stems and their GMP functionality (inventory) 
+should be available.  
+ 
+For critical systems an up to date system description detailing th e physical and logical 
+arrangements, data flows and in terfaces with other systems or processes, any hardware and 
+software pre-requisites, and security  measures should be available.  
+ 
+4.4  User Requirements Specifications should describe the required functions of the 
+computerised system and be based on documen ted risk assessment and GMP impact. User 
+requirements should be traceable throughout the life-cycle.  4.5  The regulated user should take all reasonable steps, to ensure that the system has been developed in accordance with an appropriate quality management system. The supplier should be assessed appropriately.  
+ 
+4.6  For the validation of bespoke or customis ed computerised systems there should be a 
+process in place that ensures the formal assessm ent and reporting of quality and performance 
+measures for all the life-cyc le stages of the system.  
+ 
+4.7  Evidence of appropriate test methods a nd test scenarios should be demonstrated. 
+Particularly, system (process) parameter limits, data limits and error handling should be considered. Automated testing tools and test  environments should have documented 
+assessments for their adequacy.   
+4.8 If data are transferred to another data fo rmat or system, validation should include checks 
+that data are not altered in value and/or  meaning during this migration process. 
+ 
+Operational Phase  
+5.  Data   
+Computerised systems exchanging data elec tronically with other systems should include 
+appropriate built-in checks for the correct and secu re entry and processing of data, in order to 
+minimize the risks.  
+ 
+6.  Accuracy Checks   
+For critical data entered manually, there should be an additional check on the accuracy of the 
+data. This check may be done by a second operator or by validated electronic means. The criticality and the potential consequences of erroneous or incorrectly entered data to a system 
+should be covered by risk management.  
+ 
+7.  Data Storage   
+7.1  Data should be secured by both physical a nd electronic means against damage. Stored 
+data should be checked for accessibility, read ability and accuracy. Acce ss to data should be 
+ensured throughout the retention period. 
+  7.2  Regular back-ups of all relevant data should be done. Integrity and accuracy of back-up data and the ability to rest ore the data should be checked during validation and monitored 
+periodically.  
+ 
+---PAGE BREAK---
+8.  Printouts   
+8.1  It should be possible to ob tain clear printed copies of electronically stored data.  
+8.2  For records supporting batch release it s hould be possible to generate printouts 
+indicating if any of the data has be en changed since the original entry. 
+  9.  Audit Trails   
+Consideration should be given, based on a risk  assessment, to building into the system 
+the creation of a record of all GMP-relevant changes and de letions (a system generated "audit 
+trail"). For change or deletion of GMP-relevant  data the reason should be documented. Audit 
+trails need to be available and convertible to a generally intelligible form and regularly 
+reviewed.  
+ 
+10.  Change and Configuration Management   
+Any changes to a computerised system includi ng system configurations should only be made 
+in a controlled manner in accordance with a defined procedure.  
+ 
+11.  Periodic evaluation   
+Computerised systems should be periodically evalua ted to confirm that they remain in a valid 
+state and are compliant with GMP. Such evalua tions should include, where appropriate, the 
+current range of functionalit y, deviation records, incident s, problems, upgrade history, 
+performance, reliability, security  and validation st atus reports. 
+ 
+12.  Security   
+12.1  Physical and/or logical controls should be  in place to restrict access to computerised 
+system to authorised persons. Suitable met hods of preventing unauthorised entry to the 
+system may include the use of keys, pass card s, personal codes with passwords, biometrics, 
+restricted access to computer equipment and data storage areas.   
+12.2  The extent of security controls depends on the criticality of the computerised system.  
+ 12.3  Creation, change, and cancellation of access authorisations should be recorded.   12.4  Management systems for data and for doc uments should be designed to record the 
+identity of operators entering, changing, confirmi ng or deleting data including date and time.  
+ 13.  Incident Management   
+All incidents, not only system failures and da ta errors, should be reported and assessed. 
+The root cause of a critical in cident should be identified and should form the basis of 
+corrective and preventive actions.  
+ 14.  Electronic Signature   
+Electronic records may be signed electronically . Electronic signatures are expected to:  
+a. have the same impact as hand-written  signatures within the boundaries of the 
+company,  
+b. be permanently linked to their respective record,  
+c. include the time and date that they were applied.  
+ 
+---PAGE BREAK---
+15.  Batch release   
+When a computerised system is used for record ing certification and batch release, the system 
+should allow only Qualified Persons to certify the release of the batches and it should clearly 
+identify and record the person releasing or certi fying the batches. This should be performed 
+using an electronic signature.  
+ 
+16.  Business Continuity   
+For the availability of computerised systems supporting critical proces ses, provisions should 
+be made to ensure continuity of support fo r those processes in th e event of a system 
+breakdown (e.g. a manual or alternative system).  The time required to bring the alternative 
+arrangements into use should be based on risk an d appropriate for a particular system and the 
+business process it supports. These arrangements s hould be adequately documented and tested.  
+ 
+17.  Archiving  
+Data may be archived. This data should be ch ecked for accessibility, readability and integrity. 
+If relevant changes are to be made to the sy stem (e.g. computer equipment or programs), then 
+the ability to retrieve the data  should be ensured and tested. 
+ 
+Glossary  
+Application : Software installed on a defined pl atform/hardware providing specific 
+functionality  
+Bespoke/Customized computerised system: A computerised system individually designed 
+to suit a specific business process  
+Commercial of the shelf software: Software commercially available, whose fitness for use is 
+demonstrated by a broad spectrum of users.   
+IT Infrastructure: The hardware and software such as networking software and operation 
+systems, which makes it possible fo r the application to function.  
+Life cycle: All phases in the life of the system from initial requirements until retirement 
+including design, specificati on, programming, testing, installation, operation, and 
+maintenance.  
+Process owner : The person responsible for the business process.  
+System owner : The person responsible for the availability, and maintenance of a 
+computerised system and for the security of the data residing on that system.  
+Third Party : Parties not directly managed by the hol der of the manufacturing and/or import 
+authorisation.  
+---PAGE BREAK---

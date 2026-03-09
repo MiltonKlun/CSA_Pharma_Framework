@@ -1,0 +1,46 @@
+# Docker Compose for PharmaQMS Demo App
+# System Under Validation for CSA Framework
+
+services:
+  # ── PostgreSQL Database ──────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    container_name: pharma_qms_db
+    environment:
+      POSTGRES_DB: pharma_qms
+      POSTGRES_USER: pharma_admin
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-pharma_dev_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pharma_admin -d pharma_qms"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ── FastAPI Application ──────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pharma_qms_app
+    environment:
+      DATABASE_URL: postgresql://pharma_admin:${DB_PASSWORD:-pharma_dev_password}@db:5432/pharma_qms
+      SECRET_KEY: ${SECRET_KEY:-dev-secret-key-change-in-production}
+      APP_ENV: development
+      DEBUG: "true"
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./app:/app/app  # Hot reload during development
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+volumes:
+  postgres_data:
+    driver: local

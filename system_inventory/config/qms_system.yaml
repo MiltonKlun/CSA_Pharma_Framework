@@ -1,0 +1,71 @@
+system:
+  name: "PharmaQMS Demo App"
+  version: "1.0.0"
+  description: "Quality Management System for Demonstration"
+  vendor: "Milton Klun"
+  gamp_category: 4 # Configured product
+  
+features:
+  - id: "AUTH-001"
+    name: "User Authentication"
+    description: "System login with role-based access control"
+    intended_use: "supporting" # Supports quality but doesn't directly control it
+    patient_safety_impact: false
+    data_integrity_impact: true
+    gamp_category: 3 # Standard functionality
+
+  - id: "ESIG-001"
+    name: "Electronic Signatures"
+    description: "21 CFR Part 11 compliant approvals requiring password reentry"
+    intended_use: "direct" # Used directly in quality decision approvals
+    patient_safety_impact: true
+    data_integrity_impact: true
+    gamp_category: 4
+
+  - id: "AUDIT-001"
+    name: "Audit Trail"
+    description: "Immutable logging of all system record changes"
+    intended_use: "direct"
+    patient_safety_impact: true
+    data_integrity_impact: true
+    gamp_category: 3
+
+  - id: "DEV-001"
+    name: "Deviation Management"
+    description: "Reporting, investigating, and approving manufacturing deviations"
+    intended_use: "direct"
+    patient_safety_impact: true
+    data_integrity_impact: true
+    gamp_category: 4
+
+  - id: "CAPA-001"
+    name: "CAPA Management"
+    description: "Corrective and preventive action lifecycle"
+    intended_use: "supporting"
+    patient_safety_impact: false
+    data_integrity_impact: true
+    gamp_category: 4
+
+  - id: "DOC-001"
+    name: "Document Control"
+    description: "Managing SOPs and quality documents"
+    intended_use: "supporting"
+    patient_safety_impact: false
+    data_integrity_impact: true
+    gamp_category: 4
+
+  - id: "BATCH-001"
+    name: "Batch Record Review"
+    description: "Review and approval of electronic batch records"
+    intended_use: "direct"
+    patient_safety_impact: true
+    data_integrity_impact: true
+    gamp_category: 4
+
+  - id: "DASH-001"
+    name: "Quality Dashboard"
+    description: "Aggregated metric reporting on QMS statuses"
+    intended_use: "supporting"
+    patient_safety_impact: false
+    data_integrity_impact: false
+    gamp_category: 5 # Custom reporting

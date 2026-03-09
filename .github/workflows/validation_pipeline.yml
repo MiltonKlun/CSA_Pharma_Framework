@@ -1,0 +1,95 @@
+name: Continuous CSA Validation Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: pharma_admin
+          POSTGRES_PASSWORD: devpassword123
+          POSTGRES_DB: pharma_qms
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+        cache: 'pip'
+
+    - name: Install Dependencies
+      run: |
+        set -e
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install jinja2 playwright
+        playwright install chromium
+
+    - name: Setup Application & Database (Seed)
+      env:
+        DATABASE_URL: postgresql://pharma_admin:devpassword123@localhost/pharma_qms
+        SECRET_KEY: ci-cd-test-secret-key
+      run: |
+        set -e
+        python demo_app/app/seed.py
+
+    - name: CSA Step 1 & 2 - Risk Engine Execution
+      run: |
+        set -e
+        # Verifies the system inventory and risk matrix compile cleanly
+        python system_inventory/inventory.py
+        python risk_engine/risk_assessor.py
+        python risk_engine/risk_matrix.py
+
+    - name: CSA Step 3 - Execute Scripted Assurance (HIGH Risk)
+      env:
+        DATABASE_URL: sqlite:///./test_pharma_qms.db
+        SECRET_KEY: ci-cd-test-secret-key
+      run: |
+        set -e
+        # Pytest will test the critical workflows and 21 CFR 11 Part features
+        pytest test_suites/scripted/ -v
+
+    - name: CSA Step 4a - Automated Evidence Capture
+      env:
+        DATABASE_URL: postgresql://pharma_admin:devpassword123@localhost/pharma_qms
+      run: |
+        set -e
+        # Capture the ALCOA+ audit trail from the seeded database
+        python evidence_capture/audit_trail_collector.py
+
+    - name: CSA Step 4b - Programmatic ALCOA+ Validation
+      run: |
+        set -e
+        # Ensure the captured JSON passes the 5 Data Integrity Principles
+        python evidence_capture/validators/alcoa_validator.py
+
+    - name: Generate Final Validation Summary Report (VSR)
+      run: |
+        set -e
+        # Compile Unscripted Sessions, Risk Data, and Evidence into PDF
+        python report_generator/generator.py
+
+    - name: Upload Validation Record Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Validation_Summary_Report_${{ github.sha }}
+        path: report_generator/outputs/Validation_Summary_Report.pdf
+        retention-days: 90 # Retention for regulatory QA review

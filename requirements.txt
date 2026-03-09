@@ -1,0 +1,42 @@
+# CSA Validation Automation Framework - Requirements
+# Install with: pip install -r requirements.txt
+# Or install from pyproject.toml: pip install -e ".[dev]"
+
+# ── Demo App (System Under Validation) ──────────────────────────
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+sqlalchemy>=2.0.25
+psycopg2-binary>=2.9.9
+alembic>=1.13.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+python-multipart>=0.0.6
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# ── Risk Engine & System Inventory ──────────────────────────────
+pyyaml>=6.0.1
+
+# ── Report Generation ──────────────────────────────────────────
+jinja2>=3.1.3
+weasyprint>=61.0
+
+# ── Evidence Capture ───────────────────────────────────────────
+rich>=13.7.0
+
+# ── Test Automation (Scripted) ─────────────────────────────────
+pytest>=8.0.0
+pytest-playwright>=0.4.4
+pytest-asyncio>=0.23.0
+playwright>=1.41.0
+
+# ── Test Reporting ─────────────────────────────────────────────
+allure-pytest>=2.13.2
+
+# ── Code Quality ───────────────────────────────────────────────
+ruff>=0.2.0
+mypy>=1.8.0
+pytest-cov>=4.1.0
+
+# ── HTTP Testing ───────────────────────────────────────────────
+httpx>=0.26.0

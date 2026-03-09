@@ -1,0 +1,71 @@
+name: Periodic Nightly Regression (Validation Check)
+
+on:
+  schedule:
+    # Runs at 02:00 UTC every night
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  periodic_review:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: pharma_admin
+          POSTGRES_PASSWORD: devpassword123
+          POSTGRES_DB: pharma_qms
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+        cache: 'pip'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install jinja2 playwright
+        playwright install chromium
+
+    - name: Setup Application & Database (Seed)
+      env:
+        DATABASE_URL: postgresql://pharma_admin:devpassword123@localhost/pharma_qms
+        SECRET_KEY: nightly-regression-secret-key
+      run: |
+        python demo_app/app/seed.py
+
+    - name: Execute Scripted Assurance
+      env:
+        DATABASE_URL: sqlite:///./test_pharma_qms.db
+        SECRET_KEY: nightly-regression-secret-key
+      run: |
+        pytest test_suites/scripted/ -v
+
+    - name: Process Evidence & VSR
+      env:
+        DATABASE_URL: postgresql://pharma_admin:devpassword123@localhost/pharma_qms
+      run: |
+        python evidence_capture/audit_trail_collector.py
+        python evidence_capture/validators/alcoa_validator.py
+        python report_generator/generator.py
+
+    - name: Upload Periodic Record
+      uses: actions/upload-artifact@v4
+      with:
+        name: Nightly_Validation_Summary_Report_${{ github.run_date }}
+        path: report_generator/outputs/Validation_Summary_Report.pdf
+        retention-days: 90

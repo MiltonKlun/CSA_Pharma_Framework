@@ -1,0 +1,32 @@
+# Environments
+venv/
+env/
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Database
+pharma_qms.db
+pharma_qms.db-journal
+
+# Outputs & Evidence
+report_generator/outputs/
+evidence_capture/extracted_audit_trail.json
+evidence_capture/alcoa_validation_summary.txt
+test_suites/unscripted/sessions/
+risk_engine/risk_assessment_results.json
+junit_report.xml
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
