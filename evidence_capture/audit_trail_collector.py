@@ -3,6 +3,7 @@ CSA Step 4 — Record: Audit Trail Collector
 Extracts raw compliance logs from the system database into immutable JSON evidence.
 """
 import os
+import json
 import getpass
 import platform
 from datetime import datetime
