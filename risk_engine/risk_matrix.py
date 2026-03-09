@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 from system_inventory.inventory import SystemFeature
-from .risk_assessor import FMEACalculator
+from risk_engine.risk_assessor import FMEACalculator
 
 class RiskDecision(BaseModel):
     feature_id: str
