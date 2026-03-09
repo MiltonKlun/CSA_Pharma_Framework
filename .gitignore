@@ -30,3 +30,10 @@ Thumbs.db
 # IDEs
 .vscode/
 .idea/
+
+# Local Notes & Project Planning
+CODE_OF_CONDUCT.md 
+CONTRIBUTING.md 
+IMPROVEMENTS.md 
+logging.txt 
+PROJECT_PLAN.md

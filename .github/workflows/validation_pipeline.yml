@@ -41,6 +41,7 @@ jobs:
         pip install -r requirements.txt
         pip install jinja2 playwright
         playwright install chromium
+        pip install -e .
 
     - name: Setup Application & Database (Seed)
       env:
