@@ -166,7 +166,6 @@ This framework implements concepts from:
 ```
 pharma-csa-framework/
 ├── README.md                           # This file
-├── PROJECT_PLAN.md                     # Detailed project plan & phases
 ├── CSA_INFO.md                         # Regulatory theory & reference guide
 ├── docs/                               # Documentation
 │   ├── glossary.md                     # Pharma ↔ Software QA mapping
