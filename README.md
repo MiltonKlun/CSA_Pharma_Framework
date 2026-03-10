@@ -1,6 +1,6 @@
 # CSA Validation Automation Framework
 
-### Bridging Pharmaceutical Quality & Software Test Automation_
+### Bridging Pharmaceutical Quality & Software Test Automation
 
 [![Validation Pipeline](https://img.shields.io/badge/CSA_Pipeline-passing-brightgreen?style=flat-square&logo=github-actions)](https://github.com/miltonklun/pharma-csa-framework/actions)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?style=flat-square&logo=python)](https://python.org)
@@ -120,10 +120,6 @@ open report_generator/outputs/Validation_Summary_Report.pdf
 # View Allure test report
 allure serve allure-results/
 ```
-
-### Further Reading
-
-*   [Validation Summary Report PDF (Sample Output)](report_generator/outputs/Validation_Summary_Report.pdf)
 
 ---
 
