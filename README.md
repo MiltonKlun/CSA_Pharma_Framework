@@ -2,7 +2,7 @@
 
 ### Bridging Pharmaceutical Quality & Software Test Automation
 
-[![Validation Pipeline](https://img.shields.io/badge/CSA_Pipeline-passing-brightgreen?style=flat-square&logo=github-actions)](https://github.com/miltonklun/pharma-csa-framework/actions)
+[![Validation Pipeline](https://github.com/MiltonKlun/CSA_Pharma_Framework/actions/workflows/validation_pipeline.yml/badge.svg)](https://github.com/MiltonKlun/CSA_Pharma_Framework/actions/workflows/validation_pipeline.yml)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?style=flat-square&logo=python)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![FDA CSA](https://img.shields.io/badge/FDA-CSA_2025-red?style=flat-square)](https://www.fda.gov/media/188844/download)
@@ -91,8 +91,8 @@ The framework validates a simplified **pharmaceutical Quality Management System 
 
 ```bash
 # Clone the repository
-git clone https://github.com/miltonklun/pharma-csa-framework.git
-cd pharma-csa-framework
+git clone https://github.com/MiltonKlun/CSA_Pharma_Framework.git
+cd CSA_Pharma_Framework
 
 # Create and activate virtual environment
 python -m venv venv
@@ -213,7 +213,7 @@ This project is licensed under the [MIT License](LICENSE).
 ## Author
 
 **Milton Klun**  
-*QA Automation Engineer | AI Quality Testing*
+*SDET · QA Automation Engineer · AI Quality & LLM Evaluation*
 
 <div align="left">
   <a href="https://www.linkedin.com/in/milton-klun/"><img src="https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a><a href="mailto:miltonericklun@gmail.com"><img src="https://img.shields.io/badge/EMAIL-D14836?style=for-the-badge" alt="Email"/></a><a href="https://www.miltonklun.com"><img src="https://img.shields.io/badge/PORTFOLIO-000000?style=for-the-badge" alt="Live Site"/></a>
