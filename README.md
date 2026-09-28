@@ -9,7 +9,7 @@
 
 ---
 
-## 🎯 What Is This?
+## What Is This?
 
 An open-source **Python/Playwright framework** that implements the FDA's **Computer Software Assurance (CSA)** methodology as an automated validation lifecycle.
 
@@ -17,7 +17,7 @@ It takes a pharmaceutical software system, **classifies its features by risk**, 
 
 ---
 
-## 🔬 Why Does This Matter?
+## Why Does This Matter?
 
 The pharmaceutical industry is in the middle of a historic shift. The FDA's final CSA guidance (September 2025) formally moves the industry away from **documentation-heavy Computer System Validation (CSV)** toward a **risk-based, critical-thinking approach**.
 
@@ -31,15 +31,15 @@ The problem? Most pharma companies don't have the technical expertise to automat
 
 ---
 
-## 🏗️ Architecture — The CSA Four-Step Framework in Code
+## Architecture — The CSA Four-Step Framework in Code
 
 Every module in this repository maps directly to the FDA's CSA process:
 
 ```mermaid
 graph LR
-    A["📋 Step 1<br/>Identify Intended Use<br/><code>system_inventory/</code>"] --> B["⚖️ Step 2<br/>Risk Assessment<br/><code>risk_engine/</code>"]
-    B --> C["🧪 Step 3<br/>Assurance Activities<br/><code>test_suites/</code>"]
-    C --> D["📄 Step 4<br/>Establish Record<br/><code>evidence_capture/</code><br/><code>report_generator/</code>"]
+    A["Step 1<br/>Identify Intended Use<br/><code>system_inventory/</code>"] --> B["Step 2<br/>Risk Assessment<br/><code>risk_engine/</code>"]
+    B --> C["Step 3<br/>Assurance Activities<br/><code>test_suites/</code>"]
+    C --> D["Step 4<br/>Establish Record<br/><code>evidence_capture/</code><br/><code>report_generator/</code>"]
 ```
 
 | CSA Step | Module | What It Does |
@@ -59,17 +59,17 @@ The framework validates a simplified **pharmaceutical Quality Management System 
 
 | Feature | Risk Level | Regulatory Driver |
 |---------|-----------|-------------------|
-| 🔐 User Authentication + Roles | **HIGH** | 21 CFR Part 11 §11.10(d) |
-| ✍️ Electronic Signatures | **HIGH** | 21 CFR Part 11 §11.50, §11.70 |
-| 📝 Audit Trail | **HIGH** | 21 CFR Part 11 §11.10(e) |
-| ⚠️ Deviation Management | **HIGH** | GMP workflow integrity |
-| 🔧 CAPA Management | NOT HIGH | Supporting quality function |
-| 📄 Document Control | NOT HIGH | Supporting quality function |
-| 📊 Dashboard / Reporting | NOT HIGH | Informational function |
+| User Authentication + Roles | **HIGH** | 21 CFR Part 11 §11.10(d) |
+| Electronic Signatures | **HIGH** | 21 CFR Part 11 §11.50, §11.70 |
+| Audit Trail | **HIGH** | 21 CFR Part 11 §11.10(e) |
+| Deviation Management | **HIGH** | GMP workflow integrity |
+| CAPA Management | NOT HIGH | Supporting quality function |
+| Document Control | NOT HIGH | Supporting quality function |
+| Dashboard / Reporting | NOT HIGH | Informational function |
 
 ---
 
-## 🛡️ Recent Compliance Upgrades
+## Recent Compliance Upgrades
 
 - **Evidence Integrity**: SHA-256 cryptographic hashing and OS metadata for all exported artifacts, ensuring strict chain of custody and preventing tampering (PIC/S PI 041).
 - **Strict ALCOA+**: Expanded programmatic validation to all 9 data integrity principles, with chronologically consistent timestamp checks and fail-fast CI/CD pipeline enforcement.
@@ -79,7 +79,7 @@ The framework validates a simplified **pharmaceutical Quality Management System 
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -123,7 +123,7 @@ allure serve allure-results/
 
 ---
 
-## 📚 Pharma-to-Code Glossary
+## Pharma-to-Code Glossary
 
 | Pharma Quality Concept | Software QA Equivalent | Framework Module |
 |----------------------|----------------------|--------------------|
@@ -138,11 +138,11 @@ allure serve allure-results/
 | Electronic Signature | Authenticated user action | Demo app feature |
 | Continuous Validation | CI/CD pipeline | `.github/workflows/` |
 
-> 📖 Full glossary: [`docs/glossary.md`](docs/glossary.md)
+> Full glossary: [`docs/glossary.md`](docs/glossary.md)
 
 ---
 
-## 📖 Regulatory References
+## Regulatory References
 
 This framework implements concepts from:
 
@@ -153,11 +153,11 @@ This framework implements concepts from:
 5. **PIC/S PI 041** — Data Integrity Guidance (ALCOA+ Principles)
 6. **ICH Q9 (R1)** — Quality Risk Management (FMEA Methodology)
 
-> 📖 Detailed regulatory analysis: [`CSA_INFO.md`](CSA_INFO.md)
+> Detailed regulatory analysis: [`CSA_INFO.md`](CSA_INFO.md)
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 pharma-csa-framework/
@@ -184,7 +184,7 @@ pharma-csa-framework/
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 | Component | Technology |
 |-----------|-----------|
@@ -198,13 +198,13 @@ pharma-csa-framework/
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This framework is a **learning and demonstration project**. It is not intended to serve as regulatory advice or to replace professional CSV/CSA validation services. The regulatory interpretations within this project reflect the author's understanding of publicly available FDA guidance documents and industry best practices. Always consult with qualified regulatory professionals for actual validation activities.
 
 ---
 
-## 📝 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
 
