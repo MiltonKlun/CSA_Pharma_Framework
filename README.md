@@ -53,7 +53,7 @@ graph LR
 
 ---
 
-## 🎮 Demo App — The System Under Validation
+## Demo App — The System Under Validation
 
 The framework validates a simplified **pharmaceutical Quality Management System (QMS)** built with FastAPI + PostgreSQL. It simulates the kind of regulated software pharma companies actually need to validate:
 
